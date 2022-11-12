@@ -23,8 +23,12 @@ document.addEventListener('DOMContentLoaded', e => {
     current = ((current - 1 + max + i) % max) + 1
     return old
   }
+
+  function ImagePath(i) {
+    return `./images/Inktober_2022-${i.toString().padStart(2, '0')}.png`
+  }
   function ImageSrc(i) {
-    return `url(./images/Inktober_2022-${i.toString().padStart(2, '0')}.png)`
+    return `url(${ImagePath(i)})`
   }
 
   function Next() {
@@ -62,6 +66,9 @@ document.addEventListener('DOMContentLoaded', e => {
       let img = e.currentTarget.style.backgroundImage
       ShowImage(img)
     }
+
+    let tmp = document.createElement('img')
+    tmp.src = ImagePath(i)
 
     thumbnails.appendChild(thumbnail)
   }
