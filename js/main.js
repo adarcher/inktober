@@ -19,9 +19,8 @@ document.addEventListener('DOMContentLoaded', e => {
   let current = 1
   const max = 31
   function IncCurrent(i) {
-    let old = current
     current = ((current - 1 + max + i) % max) + 1
-    return old
+    return current
   }
 
   function ImagePath(i) {
