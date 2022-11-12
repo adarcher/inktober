@@ -24,10 +24,8 @@ document.addEventListener('DOMContentLoaded', e => {
     return old
   }
   function ImageSrc(i) {
-    return `url(images/Inktober_2022-${i.toString().padStart(2, '0')}.png)`
+    return `url(./images/Inktober_2022-${i.toString().padStart(2, '0')}.png)`
   }
-
-  ShowImage(ImageSrc(1))
 
   function Next() {
     ShowImage(ImageSrc(IncCurrent(1)))
@@ -53,7 +51,7 @@ document.addEventListener('DOMContentLoaded', e => {
     ShowThumbnails()
   }
 
-  image.style.backgroundImage = 'url(../images/Inktober_2022-01.png)'
+  ShowImage(ImageSrc(1))
 
   for (var i = 1; i <= 31; i++) {
     var thumbnail = document.createElement('div')
