@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', e => {
   }
 
   let current = 1
+  ShowImage(ImageSrc(1))
   const max = 31
   function IncCurrent(i) {
     let old = current
