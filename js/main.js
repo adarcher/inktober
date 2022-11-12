@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', e => {
   }
 
   let current = 1
-  ShowImage(ImageSrc(1))
   const max = 31
   function IncCurrent(i) {
     let old = current
@@ -27,6 +26,8 @@ document.addEventListener('DOMContentLoaded', e => {
   function ImageSrc(i) {
     return `url(images/Inktober_2022-${i.toString().padStart(2, '0')}.png)`
   }
+
+  ShowImage(ImageSrc(1))
 
   function Next() {
     ShowImage(ImageSrc(IncCurrent(1)))
