@@ -1,0 +1,133 @@
+div#frame {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-color: black;
+  border-radius: 4vw;
+  background-color: bisque;
+  width: 90%;
+  height: 90%;
+}
+
+div#image {
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+  background-image: url('../images/05.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 1.5em rgba(0,0,0,.5); 
+
+  width: calc(1200 / 1800 * 80vh); 
+  height: 80vh
+}
+
+div#back, div#forward, div#select {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 20vw;
+  height: 20vw;
+  background-color: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 0 1vh rgba(0,0,0,.5);
+  box-shadow: 0 0 1vh bisque;
+}
+
+div#select {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom-left-radius: 10vw;
+  border-bottom-right-radius: 10vw;
+}
+
+div#back {
+  border-top-right-radius: 10vw;
+  left:0
+}
+
+div#forward {
+  border-top-left-radius: 10vw;
+  right: 0;
+}
+
+div#back::after, div#forward::after, div#select::after {
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 4em;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: rgba(255, 228 , 196, 1);
+  transform: translate(-50%,-50%);
+}
+div#back::after {
+  content: '<';
+}
+div#forward::after {
+  content: '>';
+}
+div#select::after {
+  content: 'gallery_thumbnail';
+  font-family: 'Material Symbols Outlined';
+}
+
+div#thumbnails {
+  /* display: inline-block; */
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 1vw;
+  box-shadow: 0 0 4vw bisque;
+  transform: translate(-50%,-50%);
+  background-color: rgba(0,0,0,.25);
+  background-color:white;
+  width: 80vw;
+  height: 80vh;
+}
+div#thumbnail-frame {
+  display: inline-grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: min-content ;
+  position: relative;
+  gap:3vh;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 1vw;
+  width: 90%;
+  height: 90%;
+  
+  box-sizing: border-box;
+  align-items: space-evenly;
+
+  scroll-behavior: smmooth;
+  overflow-y: scroll;
+  
+
+}
+
+div.thumbnail {
+  position: relative;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 1vw;
+  background-color: rgba(0,0,0,.25);
+  box-shadow:0 0 6vw inset white;
+
+  background-size:cover;
+  background-position: center;
+  background-repeat: no-repeat;
+ 
+  width: 100%;
+  height: 20vw;
+}
