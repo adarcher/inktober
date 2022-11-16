@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 div#frame {
   display: inline-block;
   position: absolute;
@@ -6,7 +10,7 @@ div#frame {
   transform: translate(-50%,-50%);
   border-color: black;
   border-radius: 4vw;
-  background-color: bisque;
+  background-color: rgb(255,252,212);
   width: 90%;
   height: 90%;
 }
@@ -22,6 +26,7 @@ div#image {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: 5vmin;
   box-shadow: 0 0 1.5em rgba(0,0,0,.5); 
 
   width: calc(1200 / 1800 * 80vh); 
@@ -32,61 +37,66 @@ div#back, div#forward, div#select {
   display: block;
   position: absolute;
   bottom: 0;
-  width: calc(min(20vw, 20vh));
-  height: calc(min(20vw, 20vh));
+  width: 15vmin;
+  height: 15vmin;
   background-color: rgba(255, 255, 255, 0.65);
-  box-shadow: 0 0 1vh rgba(0,0,0,.5);
-  box-shadow: 0 0 1vh bisque;
+  box-shadow: 0 0 1em rgba(0,0,0,.25);
 }
 
 div#select {
+  height: 15vmin;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  border-bottom-left-radius: calc(min(10vw, 10vh));
-  border-bottom-right-radius: calc(min(10vw, 10vh));
+  border-bottom-left-radius: 10vmin;
+  border-bottom-right-radius: 10vmin;
+  width: 20vmin;
 }
 
 div#back {
-  border-top-right-radius: calc(min(10vw, 10vh));
+  border-top-right-radius: 10vmin;
   left:0
 }
 
 div#forward {
-  border-top-left-radius: calc(min(10vw, 10vh));
+  border-top-left-radius: 10vmin;
   right: 0;
 }
 
 div#back::after, div#forward::after, div#select::after {
   display: inline-block;
   position: relative;
-  top: 50%;
-  left: 50%;
-  font-size: calc(min(10vw, 10vh));
+  font-size: calc(10vmin);
   font-weight: bold;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: rgba(255, 228 , 196, 1);
+  color: rgb(255,252,212,1);
+  text-shadow: 0 0 .5em rgba(0,0,0,.3);
   transform: translate(-50%,-50%);
 }
 div#back::after {
   content: '<';
+  top: 50%;
+  left: 40%;
 }
 div#forward::after {
   content: '>';
+  top: 50%;
+  left: 60%;
 }
 div#select::after {
   content: 'gallery_thumbnail';
   font-family: 'Material Symbols Outlined';
+  top: 40%;
+  left: 50%;
 }
 
 div#thumbnails {
-  /* display: inline-block; */
   display: none;
   position: absolute;
   top: 50%;
   left: 50%;
   border-radius: 1vw;
-  box-shadow: 0 0 4vw bisque;
+  box-shadow: 0 0 4vw rgb(255,252,212);
   transform: translate(-50%,-50%);
   background-color: rgba(0,0,0,.25);
   background-color:white;
@@ -105,14 +115,10 @@ div#thumbnail-frame {
   border-radius: 1vw;
   width: 90%;
   height: 90%;
-  
   box-sizing: border-box;
   align-items: space-evenly;
-
   scroll-behavior: smmooth;
   overflow-y: scroll;
-  
-
 }
 
 div.thumbnail {
@@ -123,11 +129,53 @@ div.thumbnail {
   border-radius: 1vw;
   background-color: rgba(0,0,0,.25);
   box-shadow:0 0 6vw inset white;
-
   background-size:cover;
   background-position: center;
   background-repeat: no-repeat;
- 
   width: 100%;
   height: 20vw;
+}
+
+div#annotations {
+  pointer-events: none;
+  position: absolute;
+  left:50%;
+  /* bottom:5vh; */
+  bottom: 0;
+  transform: translate(-50%, 0%);
+  border-radius: 5vmin 5vmin 0 0;
+  box-shadow: 0 0 1em rgba(0,0,0,.25);
+  max-height: 75vh;
+  width: max-content;
+  max-width: 80vw;
+  background-color: rgba(255,255,255,.75);
+  color:rgba(10,10,10,95%);
+  text-shadow: 0 0 .5em rgba(0,0,0,.5);
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+div#title {
+  display: inline-block;
+  user-select: none;
+  font-weight: bold;
+  margin: 1em;
+  margin-bottom: 0;
+  width: fit-content;
+}
+
+div#description {
+  display: inline-block;
+  user-select: none;
+  margin: 1em;
+}
+
+div#hide_me {  
+  color: rgb(255,252,212,1);
+  user-select: none;
+  float: right;
+  right: 0%;
+  margin: 1em;
+  font-weight: bold;
+  font-size: small;
+  width: fit-content;
 }

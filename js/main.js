@@ -1,40 +1,85 @@
 document.addEventListener('DOMContentLoaded', e => {
+  let current = 1
+  let show_description = 'SHOW INFO'
+  let hide_description = 'HIDE'
+  let frame = document.getElementById('frame')
   let image = document.getElementById('image')
   let thumbnail_picker = document.getElementById('thumbnails')
   let thumbnails = document.getElementById('thumbnail-frame')
+  let annotations = document.getElementById('annotations')
+  let title = document.getElementById('title')
+  let description = document.getElementById('description')
+  let hide_me = document.getElementById('hide_me')
 
-  function HideThumbnails() {
+  let SetInfo = i => {
+    if (typeof info !== 'undefined' && info[i]) {
+      var img_info = info[i]
+      title.textContent = `${i.toString().padStart(2, '0')} ${img_info.title}`
+      description.textContent = img_info.description
+      return true
+    } else {
+      title.textContent = ''
+      description.textContent = ''
+      HideAnnotations()
+    }
+    return false
+  }
+
+  let HideAnnotations = () => {
+    title.style.display = 'none'
+    description.style.display = 'none'
+    hide_me.textContent = show_description
+  }
+  let ShowAnnotations = () => {
+    if (SetInfo(current)) {
+      title.style.display = 'inline-block'
+      description.style.display = 'inline-block'
+      hide_me.textContent = hide_description
+    }
+  }
+
+  HideAnnotations()
+
+  frame.onclick = e => {
+    if (title.style.display == 'none') {
+      ShowAnnotations()
+    } else {
+      HideAnnotations()
+    }
+  }
+
+  let HideThumbnails = () => {
     thumbnail_picker.style.display = 'none'
   }
 
-  function ShowThumbnails() {
+  let ShowThumbnails = () => {
     thumbnail_picker.style.display = 'block'
   }
 
-  function ShowImage(img) {
+  let ShowImage = img => {
     image.style.backgroundImage = img
+    SetInfo(current)
     HideThumbnails()
   }
 
-  let current = 1
   const max = 31
-  function IncCurrent(i) {
+  let IncCurrent = i => {
     current = ((current - 1 + max + i) % max) + 1
     return current
   }
 
-  function ImagePath(i) {
+  let ImagePath = i => {
     return `./images/Inktober_2022-${i.toString().padStart(2, '0')}.png`
   }
-  function ImageSrc(i) {
+  let ImageSrc = i => {
     return `url(${ImagePath(i)})`
   }
 
-  function Next() {
+  let Next = () => {
     ShowImage(ImageSrc(IncCurrent(1)))
   }
 
-  function Previous() {
+  let Previous = () => {
     ShowImage(ImageSrc(IncCurrent(-1)))
   }
 
@@ -44,24 +89,30 @@ document.addEventListener('DOMContentLoaded', e => {
 
   next_img.onclick = e => {
     Next()
+    e.stopImmediatePropagation()
   }
 
   prev_img.onclick = e => {
     Previous()
+    e.stopImmediatePropagation()
   }
 
   gallery.onclick = e => {
     ShowThumbnails()
+    e.stopImmediatePropagation()
   }
 
   ShowImage(ImageSrc(1))
 
   for (var i = 1; i <= 31; i++) {
-    var thumbnail = document.createElement('div')
+    let thumbnail = document.createElement('div')
+    let index = i
     thumbnail.className = 'thumbnail'
+    thumbnail.index = index
     thumbnail.style.backgroundImage = ImageSrc(i)
 
     thumbnail.onclick = e => {
+      current = e.currentTarget.index
       let img = e.currentTarget.style.backgroundImage
       ShowImage(img)
     }
